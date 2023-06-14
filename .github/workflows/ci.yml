@@ -20,8 +20,7 @@ jobs:
           distribution: 'adopt'
 
       - name: Build with Maven
-        - name: Build with Maven
-          run: mvn -B package --file E-commerce-project-springBoot-master2/JtProject/pom.xml
+        run: mvn -B package --file E-commerce-project-springBoot-master2/JtProject/pom.xml
 
 
       - name: Log in to Docker Hub
