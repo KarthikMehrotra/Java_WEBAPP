@@ -19,14 +19,18 @@ jobs:
           java-version: '11'
           distribution: 'adopt'
 
-      - name: Generate Maven Wrapper files
-        run: |
-          cd JtProject
-          ./mvnw wrapper:wrapper
+      - name: Set up Maven
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+          maven-version: '3.9.2'
+
+      - name: Navigate to JtProject directory
+        run: cd E-commerce-project-springBoot-master2/JtProject
 
       - name: Build with Maven
         run: |
-          cd JtProject
+          chmod +x mvnw
           ./mvnw -B package
 
       - name: Log in to Docker Hub
@@ -37,6 +41,5 @@ jobs:
 
       - name: Build and push Docker image
         run: |
-          cd JtProject
           docker build -t karthikmehrotra/ci_cd_java:${{ github.sha }} .
           docker push karthikmehrotra/ci_cd_java:${{ github.sha }}
