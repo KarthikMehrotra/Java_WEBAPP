@@ -17,13 +17,9 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: '11'
-          distribution: 'adopt'
 
-      - name: Set up Maven
-        uses: actions/setup-java@v2
-        with:
-          java-version: '11'
-          maven-version: '3.9.2'
+      - name: Install Maven
+        run: sudo apt-get install maven -y
 
       - name: Navigate to JtProject directory
         run: cd E-commerce-project-springBoot-master2/JtProject
