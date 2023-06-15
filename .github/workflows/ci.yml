@@ -18,6 +18,12 @@ jobs:
         with:
           java-version: '11'
           distribution: 'adopt'
+      - name: Set up Maven
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+          distribution: 'adopt'
+
 
       - name: Build with Maven
         run: |
@@ -35,3 +41,12 @@ jobs:
         run: |
           docker build -t karthikmehrotra/ci_cd_java:${{ github.sha }} .
           docker push karthikmehrotra/ci_cd_java:${{ github.sha }}
+
+      - name: Set up SonarCloud
+        uses: sonarsource/sonarcloud-github-action@master
+        with:
+          organization: <your-sonarcloud-organization>
+          token: ${{ secrets.SONARCLOUD_TOKEN }}
+
+      - name: Analyze with SonarCloud
+        run: sonar-scanner
