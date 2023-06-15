@@ -18,17 +18,15 @@ jobs:
         with:
           java-version: '11'
           distribution: 'adopt'
-      - name: Set up Maven
-        uses: actions/setup-java@v2
-        with:
-          java-version: '11'
-          distribution: 'adopt'
-
+          
+      - name: Generate Maven Wrapper files
+        run: |
+          cd JtProject
+          ./mvnw wrapper:wrapper
 
       - name: Build with Maven
         run: |
-          cd E-commerce-project-springBoot-master2/JtProject
-          chmod +x mvnw
+          cd JtProject
           ./mvnw -B package
 
       - name: Log in to Docker Hub
