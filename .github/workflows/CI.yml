@@ -19,7 +19,9 @@ jobs:
           java-version: '11'
 
       - name: Install Maven
-        run: sudo apt-get install maven -y
+        run: |
+          sudo apt-get update
+          sudo apt-get install maven -y
 
       - name: Navigate to JtProject directory
         run: cd E-commerce-project-springBoot-master2/JtProject
