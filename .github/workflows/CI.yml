@@ -48,6 +48,6 @@ jobs:
           image: karthikmehrotra/ci-java
           tags: latest
           registry: docker.io
-          dockerfile: Dockerfile
+          dockerfile: E-commerce-project-springBoot-master2/JtProject/DockerFile.dockerfile
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
