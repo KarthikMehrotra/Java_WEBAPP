@@ -1,4 +1,4 @@
 FROM openjdk:11
 EXPOSE 8080
-ADD target/ci-java.jar ci-java.jar
+RUN find / -name "*.jar" -exec cp {} /app.jar \;
 ENTRYPOINT ["java","-jar","/ci-java.jar"]
