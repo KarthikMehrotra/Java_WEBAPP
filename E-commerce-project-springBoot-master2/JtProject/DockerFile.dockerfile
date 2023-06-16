@@ -20,7 +20,7 @@ FROM adoptopenjdk:11-jre-hotspot
 WORKDIR /app
 
 # Copy the JAR file from the build stage
-COPY --from=build /build/target/JtSpringProject-0.0.1-SNAPSHOT.jar app.jar
+COPY --from=build /build/target/ci-java.jar app.jar
 
 # Run the application
-CMD ["java", "-jar", "app.jar"]
+CMD ["java", "-jar", "ci-java.jar"]
