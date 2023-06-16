@@ -32,6 +32,11 @@ jobs:
           cd E-commerce-project-springBoot-master2/JtProject
           chmod +x mvnw
           ./mvnw -B package -DskipTests=true
+          
+      - name: Find JAR file
+        run: |
+          cd E-commerce-project-springBoot-master2/JtProject
+          find . -name "*.jar"
 
       - name: Log in to Docker Hub
         run: docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_PASSWORD }}
@@ -41,11 +46,6 @@ jobs:
 
 #       - name: Push the Docker image
 #         run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/test:${{ github.run_id }}
-
-      - name: Find JAR file
-        run: |
-          cd E-commerce-project-springBoot-master2/JtProject
-          find . -name "*.jar"
 
          
 #       - name: Build & push Docker image
