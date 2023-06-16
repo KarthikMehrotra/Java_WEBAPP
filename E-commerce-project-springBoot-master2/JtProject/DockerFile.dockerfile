@@ -22,5 +22,8 @@ WORKDIR /app
 # Copy the JAR file from the build stage
 COPY --from=build /build/target/ci-java.jar app.jar
 
+# Expose port 8080 (if needed)
+EXPOSE 8080
+
 # Run the application
 CMD ["java", "-jar", "ci-java.jar"]
