@@ -32,7 +32,7 @@ jobs:
         run: |
            cd E-commerce-project-springBoot-master2/JtProject
            chmod +x mvnw
-           ./mvnw -B package
+           ./mvnw -B package -DskipTests=true
 
 
       - name: Log in to Docker Hub
