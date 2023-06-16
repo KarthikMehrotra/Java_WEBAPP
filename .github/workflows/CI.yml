@@ -24,15 +24,11 @@ jobs:
           sudo apt-get update
           sudo apt-get install maven -y
 
-      - name: Navigate to JtProject directory
-        run: cd E-commerce-project-springBoot-master2/JtProject
-
       - name: Build with Maven
         run: |
-           cd E-commerce-project-springBoot-master2/JtProject
-           chmod +x mvnw
-           ./mvnw -B package
-
+          cd E-commerce-project-springBoot-master2/JtProject
+          chmod +x .mvn/wrapper/mvnw
+          .mvn/wrapper/mvnw -B package
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v1
