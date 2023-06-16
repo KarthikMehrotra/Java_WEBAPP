@@ -33,19 +33,20 @@ jobs:
           chmod +x mvnw
           ./mvnw -B package -DskipTests=true
           
-      - name: Find JAR file
-        run: |
-          cd E-commerce-project-springBoot-master2/JtProject
-          find . -name "*.jar"
-
       - name: Log in to Docker Hub
         run: docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_PASSWORD }}
 
-#       - name: Build the Docker image
-#         run: docker build . --file E-commerce-project-springBoot-master2/JtProject/DockerFile --tag ${{ secrets.DOCKERHUB_USERNAME }}/test:${{ github.run_id }}
+      - name: Find JAR file
+        run: |
+          cd E-commerce-project-springBoot-master2/JtProject
+          JAR_FILE=$(find target -name "*.jar" -not -name "*-sources.jar" -not -name "*-javadoc.jar" | head -n 1)
 
-#       - name: Push the Docker image
-#         run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/test:${{ github.run_id }}
+      - name: Build the Docker image
+        run: docker build . --file E-commerce-project-springBoot-master2/JtProject/DockerFile --tag ${{ secrets.DOCKERHUB_USERNAME }}/test:${{ github.run_id }} --build-arg JAR_FILE="$JAR_FILE"
+
+      - name: Push the Docker image
+        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/test:${{ github.run_id }}
+
 
          
 #       - name: Build & push Docker image
