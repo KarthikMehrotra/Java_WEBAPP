@@ -27,9 +27,7 @@ jobs:
       - name: Navigate to JtProject directory
         run: cd E-commerce-project-springBoot-master2/JtProject
         
-      - name: Generate Maven wrapper
-        run: mvn wrapper:wrapper
-
+        
       - name: Build with Maven
         run: |
            cd E-commerce-project-springBoot-master2/JtProject
