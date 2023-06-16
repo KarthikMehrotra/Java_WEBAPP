@@ -1,0 +1,49 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up JDK 11
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+          distribution: 'adopt'
+
+      - name: Install Maven
+        run: |
+          sudo apt-get update
+          sudo apt-get install maven -y
+
+      - name: Navigate to JtProject directory
+        run: cd E-commerce-project-springBoot-master2/JtProject
+        
+      - name: Generate Maven wrapper
+        run: mvn wrapper:wrapper
+
+      - name: Build with Maven
+        run: |
+           cd E-commerce-project-springBoot-master2/JtProject
+           chmod +x mvnw
+           ./mvnw -B package
+
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and push Docker image
+        run: |
+          docker build -t karthikmehrotra/ci_cd_java:${{ github.sha }} .
+          docker push karthikmehrotra/ci_cd_java:${{ github.sha }}
