@@ -14,7 +14,8 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Fetch Docker image
-        run: docker pull karthikmehrotra/test:5305422579
+        run: docker pull karthikmehrotra/test:5311234070
 
       - name: Start Docker container
-        run: docker run -d -p 8080:8080 karthikmehrotra/test:5305422579
+        run: docker run -d -p 8080:8080 karthikmehrotra/test:5311234070
+
