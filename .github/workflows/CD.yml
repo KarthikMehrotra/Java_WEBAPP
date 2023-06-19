@@ -19,12 +19,10 @@ jobs:
       - name: Start Docker container
         id: run-container
         run: |
-          container_id=$(docker run -d -p 8080:8080 -v $PWD/E-commerce-project-springBoot-master2/JtProject/target/:/app/ karthikmehrotra/test:5311263057)
+          container_id=$(docker run -d -p 8080:8080 -v $PWD/E-commerce-project-springBoot-master2/JtProject/target:/app karthikmehrotra/test:5311263057)
           echo "::set-output name=container_id::$container_id"
           sleep 10
           docker ps
-          
      
-      - name: Check container logs
-        run: docker logs ${{ steps.run-container.outputs.container_id }} > logs.txt
-
+      - name: Copy logs from container
+        run: docker cp ${{ steps.run-container.outputs.container_id }}:/app/logs.txt logs.txt
