@@ -31,12 +31,12 @@ jobs:
         run: |
           cd E-commerce-project-springBoot-master2/JtProject
           mvn package -DskipTests=true
-
-      - name: Find Jar File
+      - name: Find JAR file
         id: find-jar
         run: |
-          jar_file=$(find E-commerce-project-springBoot-master2/JtProject/target -name "*.jar")
-          echo "::set-output name=jar_file::$jar_file"
+            jar_file=$(find E-commerce-project-springBoot-master2/JtProject/target -name "*.jar")
+            echo "::set-output name=jar_file::$jar_file"
+
 
       - name: Log in to Docker Hub
         run: docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_PASSWORD }}
@@ -47,6 +47,4 @@ jobs:
       - name: Push the Docker image
         run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/test:${{ github.run_id }}
 
-      - name: Start Docker container
-        run: |
-          docker run -d -p 8080:8080 -v ${{ steps.find-jar.outputs.jar_file }}:/app.jar ${{ secrets.DOCKERHUB_USERNAME }}/test:${{ github.run_id }}
+ 
