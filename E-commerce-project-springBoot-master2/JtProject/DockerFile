@@ -1,4 +1,4 @@
 FROM openjdk:11
 EXPOSE 8080
 RUN find / -name "*.jar" -exec cp {} /app.jar \;
-ENTRYPOINT ["java","-jar","/ci-java.jar"]
+ENTRYPOINT ["java","-jar","/app.jar"]
