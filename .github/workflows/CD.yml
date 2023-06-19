@@ -1,0 +1,20 @@
+name: CD
+
+on:
+  push:
+    branches:
+      - trigger-workflow
+
+jobs:
+  build-and-run:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Fetch Docker image
+        run: docker pull karthikmehrotra/test:5311234070
+
+      - name: Start Docker container
+        run: docker run -d -p 8080:8080 karthikmehrotra/test:5311234070
