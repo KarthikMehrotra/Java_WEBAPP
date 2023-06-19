@@ -1,8 +1,4 @@
 FROM openjdk:11
 EXPOSE 8080
-
-# Find the jar file and copy it to /app.jar
 RUN find / -name "*.jar" -exec cp {} /app.jar \;
-
 ENTRYPOINT ["java","-jar","/app.jar"]
-
