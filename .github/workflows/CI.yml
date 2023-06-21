@@ -30,7 +30,7 @@ jobs:
       - name: Build with Maven
         run: |
           cd E-commerce-project-springBoot-master2/JtProject
-          mvn package -DskipTests=true
+          mvn -B -DskipTests clean package
 
 #       - name: Get JAR file path
 #         id: get-jar-file
