@@ -23,9 +23,9 @@ jobs:
         run: sudo apt-get update && sudo apt-get install maven -y
 
       - name: Build with Maven
-        run: |
-          cd E-commerce-project-springBoot-master2/JtProject
-          mvn -B -DskipTests clean package
+        working-directory: ./E-commerce-project-springBoot-master2/JtProject
+        run: mvn -B -DskipTests clean package
+
 
 
 #       - name: Get JAR file path
