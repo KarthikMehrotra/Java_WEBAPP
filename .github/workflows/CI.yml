@@ -27,19 +27,11 @@ jobs:
           cd E-commerce-project-springBoot-master2/JtProject
           mvn -B -DskipTests clean package
 
-      - name: Move JAR file
+      - name: Get JAR file path
+        id: get-jar-file
         run: |
-          mkdir -p ./dist
-          cp E-commerce-project-springBoot-master2/JtProject/target/*.jar ./dist/
-
-
-
-
-#       - name: Get JAR file path
-#         id: get-jar-file
-#         run: |
-#           jar_file=$(find E-commerce-project-springBoot-master2/JtProject/target -name "*.jar" -exec basename {} \;)
-#           echo "::set-output name=jar_file::E-commerce-project-springBoot-master2/JtProject/target/$jar_file"
+          jar_file=$(find E-commerce-project-springBoot-master2/JtProject/target -name "*.jar" -exec basename {} \;)
+          echo "::set-output name=jar_file::E-commerce-project-springBoot-master2/JtProject/target/$jar_file"
 
 #       - name: Log in to Docker Hub
 #         run: docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_PASSWORD }}
