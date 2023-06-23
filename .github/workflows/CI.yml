@@ -41,7 +41,7 @@ jobs:
 
       - name: Build the Docker image
 #         run: docker build --file E-commerce-project-springBoot-master2/JtProject/Dockerfile --tag ${{ secrets.DOCKERHUB_USERNAME }}/test:${{ github.run_id }} .
-        run: docker build -t karthikmehrotra/test ./JtProject
+        run: docker build E-commerce-project-springBoot-master2/JtProject -t karthikmehrotra/test
         
         
 #       - name: Push the Docker image
