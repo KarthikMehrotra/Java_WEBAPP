@@ -21,8 +21,7 @@ jobs:
         run: |
           container_id=$(docker run -d -p 8080:8080 karthikmehrotra/test:latest)
           echo "::set-output name=container_id::$container_id"
-          sleep 10
-          docker ps
+          docker ps -a
      
 #       - name: Copy logs from container
 #         run: docker cp ${{ steps.run-container.outputs.container_id }}:/app/logs.txt logs.txt
