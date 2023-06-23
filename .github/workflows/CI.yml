@@ -40,7 +40,9 @@ jobs:
         run: docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_PASSWORD }}
 
       - name: Build the Docker image
-        run: docker build --file E-commerce-project-springBoot-master2/JtProject/Dockerfile --tag ${{ secrets.DOCKERHUB_USERNAME }}/test:${{ github.run_id }} .
-
-      - name: Push the Docker image
-        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/test:${{ github.run_id }}
+#         run: docker build --file E-commerce-project-springBoot-master2/JtProject/Dockerfile --tag ${{ secrets.DOCKERHUB_USERNAME }}/test:${{ github.run_id }} .
+        run: docker build -t karthikmehrotra/test ./JtProject
+        
+        
+#       - name: Push the Docker image
+#         run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/test:${{ github.run_id }}
