@@ -44,5 +44,7 @@ jobs:
         run: docker build E-commerce-project-springBoot-master2/JtProject -t karthikmehrotra/test
         
         
-#       - name: Push the Docker image
-#         run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/test:${{ github.run_id }}
+      - name: Push the Docker image
+        run: docker push karthikmehrotra/test
+        
+# ${{ secrets.DOCKERHUB_USERNAME }}/test:${{ github.run_id }}
